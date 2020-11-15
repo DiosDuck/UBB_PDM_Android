@@ -1,5 +1,4 @@
 package com.example.ubb_pdm_android
-
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_item.view.*
-import ro.ubbcluj.cs.ilazar.myapp2.TAG
 
 class ItemListAdapter(
     private val fragment: Fragment

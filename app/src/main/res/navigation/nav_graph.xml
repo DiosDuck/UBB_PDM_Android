@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ItemListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/ItemListFragment"
         android:name="com.example.ubb_pdm_android.ItemListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/item_list_fragment_label"
         tools:layout="@layout/fragment_item_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ItemListFragment_to_ItemEditFragment"
+            app:destination="@id/ItemEditFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/ItemEditFragment"
         android:name="com.example.ubb_pdm_android.ItemEditFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/item_edit_fragment"
         tools:layout="@layout/fragment_item_edit">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_ItemEditFragment_to_ItemListFragment"
+            app:destination="@id/ItemListFragment" />
     </fragment>
 </navigation>

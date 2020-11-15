@@ -1,5 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2
-
+package com.example.ubb_pdm_android
 val Any.TAG: String
     get() {
         val tag = javaClass.simpleName
