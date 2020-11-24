@@ -1,4 +1,5 @@
-package com.example.ubb_pdm_android
+package com.example.ubb_pdm_android.todo.items
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_item_list.*
+import com.example.ubb_pdm_android.R
+import com.example.ubb_pdm_android.auth.data.AuthRepository
+import com.example.ubb_pdm_android.core.TAG
 
 class ItemListFragment : Fragment() {
     private lateinit var itemListAdapter: ItemListAdapter
@@ -15,7 +20,7 @@ class ItemListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "onCreate")
+        Log.v(TAG, "onCreate")
     }
 
     override fun onCreateView(
@@ -25,18 +30,23 @@ class ItemListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_item_list, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        fab.setOnClickListener {
-            Log.v(TAG, "creating new item")
-            itemsModel.items.value?.size?.let { itemsModel.createItem(it) }
-        }
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.i(TAG, "onActivityCreated")
+        Log.v(TAG, "onActivityCreated")
+        if (!AuthRepository.isLoggedIn) {
+            findNavController().navigate(R.id.fragment_login)
+            return;
+        }
         setupItemList()
+        fab.setOnClickListener {
+            Log.v(TAG, "add new item")
+            findNavController().navigate(R.id.fragment_item_edit)
+        }
+        logout.setOnClickListener{
+            Log.v(TAG,"logout")
+            AuthRepository.logout()
+            findNavController().navigate(R.id.fragment_login)
+        }
     }
 
     private fun setupItemList() {
@@ -44,7 +54,7 @@ class ItemListFragment : Fragment() {
         item_list.adapter = itemListAdapter
         itemsModel = ViewModelProvider(this).get(ItemListViewModel::class.java)
         itemsModel.items.observe(viewLifecycleOwner, { items ->
-            Log.i(TAG, "update items")
+            Log.v(TAG, "update items")
             itemListAdapter.items = items
         })
         itemsModel.loading.observe(viewLifecycleOwner, { loading ->
@@ -58,12 +68,11 @@ class ItemListFragment : Fragment() {
                 Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
             }
         })
-        itemsModel.loadItems()
+        itemsModel.refresh()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(TAG, "onDestroy")
+        Log.v(TAG, "onDestroy")
     }
 }
-

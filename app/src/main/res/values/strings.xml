@@ -1,12 +1,19 @@
 <resources>
-    <string name="app_name">UBB_PDM_Android</string>
+    <string name="app_name">Tea shop?</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="item_list_fragment_label">Item List</string>
     <string name="item_edit_fragment_label">Item Edit</string>
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
-
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must not be empty</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
     <string name="item_list_fragment">Item list fragment</string>
     <string name="item_edit_fragment">Item edit fragment</string>
+    <string name="button">Button</string>
+    <string name="type">Type</string>
+    <string name="tea">Tea</string>
 </resources>

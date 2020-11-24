@@ -1,4 +1,5 @@
-package com.example.ubb_pdm_android
+package com.example.ubb_pdm_android.core
+
 val Any.TAG: String
     get() {
         val tag = javaClass.simpleName
